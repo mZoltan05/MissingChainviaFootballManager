@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 #from calc.models import People
+from calc.models import Club
 # Create your views here.
 
 #def home (request):
@@ -10,4 +11,8 @@ from django.shortcuts import render
 #    return render(request, 'home.html',{'people':peoples})
 
 def players(request):
-    return(render(request,'players.html'))
+    clubs = Club.objects.raw("SELECT * FROM club WHERE based like '%%England%%' ")
+    print('--------------------------------------------------')
+    print(clubs)
+    print('--------------------------------------------------')
+    return(render(request,'players.html',{'clubs':clubs}))
