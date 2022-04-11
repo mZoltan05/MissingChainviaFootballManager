@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Players</h2>
+
+
+<table  class="styled-table">
+    <thead> 
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Division</th>
+      <th>Based</th>
+    </tr>
+    </thead> 
+    <tbody>
+    {% for i in clubs %}
+    <tr>
+      <td>{{i.clubid}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.division}}</td>
+      <td>{{i.based}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

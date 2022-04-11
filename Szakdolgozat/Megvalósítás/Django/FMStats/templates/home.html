@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form>
+    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+    <label for="vehicle1"> I have a bike</label>
+    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+    <label for="vehicle2"> I have a car</label>
+    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+    <label for="vehicle3"> I have a boat</label>
+</form>
+
+  <table  class="styled-table">
+    <thead> 
+        <tr>
+            {% if column_visibilities.name == True %} <th> Név </th>{% endif %}
+            {% if column_visibilities.club == True %} <th> Club </th>{% endif %}
+            {% if column_visibilities.age == True %} <th> Kor </th>{% endif %}
+            {% if column_visibilities.born == True %} <th> Születési Dátum </th>{% endif %}
+            {% if column_visibilities.height == True %} <th> Magasság </th>{% endif %}
+            {% if column_visibilities.weight == True %} <th> Súly </th>{% endif %}
+            {% if column_visibilities.bestpos == True %} <th> Pozíció </th>{% endif %}
+            {% if column_visibilities.nation == True %} <th> Nemzetiség </th>{% endif %}
+            {% if column_visibilities.preferredfoot == True %} <th> Ügyesebb láb </th>{% endif %}
+            {% if column_visibilities.value == True %} <th> Piaci érték </th>{% endif %}
+            {% if column_visibilities.wage == True %} <th> Kereset </th>{% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in players %}
+        <tr>
+            {% if column_visibilities.name == True %} <td> {{ p.name }} </td>{% endif %}
+            {% if column_visibilities.club == True %} <td> {{ p.club }} </td>{% endif %}
+            {% if column_visibilities.age == True %} <td> {{ p.age }} </td>{% endif %}
+            {% if column_visibilities.born == True %} <td> {{ p.born }} </td>{% endif %}
+            {% if column_visibilities.height == True %} <td> {{ p.height }} </td>{% endif %}
+            {% if column_visibilities.weight == True %} <td> {{ p.weight }} </td>{% endif %}
+            {% if column_visibilities.bestpos == True %} <td> {{ p.bestpos }} </td>{% endif %}
+            {% if column_visibilities.nation == True %} <td> {{ p.nation }} </td>{% endif %}
+            {% if column_visibilities.preferredfoot == True %} <td> {{ p.preferredfoot }} </td>{% endif %}
+            {% if column_visibilities.value == True %} <td> {{ p.value }} {%if p.value > 0 %} € {% endif %} </td>{% endif %}
+            {% if column_visibilities.wage == True %} <td> {{ p.wage }} {%if p.wage > 0 %} € {% endif %}</td>{% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
