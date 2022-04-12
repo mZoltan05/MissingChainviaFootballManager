@@ -2,20 +2,63 @@
 
 {% block content %}
 
-<form>
-    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-    <label for="vehicle1"> I have a bike</label>
-    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-    <label for="vehicle2"> I have a car</label>
-    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-    <label for="vehicle3"> I have a boat</label>
+<form action="">
+    <input type="text" id="name_txt" name="name_txt">
+    <label for="name_txt"> Név</label> &nbsp &nbsp
+    <input type="text" id="club_txt" name="club_txt">
+    <label for="club_txt"> Csapat</label>&nbsp &nbsp
+    <input type="text" id="age_txt" name="age_txt">
+    <label for="age_txt"> Kor</label> 
+    <br>
+    <input type="text" id="born_txt" name="born_txt">
+    <label for="born_txt"> Születési dátum</label> &nbsp &nbsp
+    <input type="text" id="height_txt" name="height_txt">
+    <label for="height_txt"> Magasság</label> &nbsp &nbsp
+    <input type="text" id="weight_txt" name="weight_txt">
+    <label for="weight_txt"> Súly</label>
+    <br>
+    <input type="text" id="position_txt" name="position_txt">
+    <label for="position_txt"> Pozíció</label>
+    <input type="text" id="nation_txt" name="nation_txt">
+    <label for="nation_txt"> Nemzetiség</label>
+    <input type="text" id="preferredfoot_txt" name="preferredfoot_txt">
+    <label for="preferredfoot_txt"> Ügyesebb láb</label>
+    <br>
+    <input type="text" id="value_txt" name="value_txt">
+    <label for="value_txt"> Piaci érték</label>
+    <input type="text" id="wage_txt" name="wage_txt">
+    <label for="wage_txt"> Kereset</label>
+    <br>
+    <input type="checkbox" id="name" name="name" {% if column_visibilities.name == True %} checked {% endif %}>
+    <label for="name"> Név</label>
+    <input type="checkbox" id="club" name="club" {% if column_visibilities.club == True %} checked {% endif %}>
+    <label for="name"> Csapat</label>
+    <input type="checkbox" id="age" name="age" {% if column_visibilities.age == True %} checked {% endif %}>
+    <label for="name"> Kor</label>
+    <input type="checkbox" id="born" name="born" {% if column_visibilities.born == True %} checked {% endif %}>
+    <label for="name"> Születési dátum</label>
+    <input type="checkbox" id="height" name="height" {% if column_visibilities.height == True %} checked {% endif %}>
+    <label for="name"> Magasság </label>
+    <input type="checkbox" id="weight" name="weight" {% if column_visibilities.weight == True %} checked {% endif %}>
+    <label for="name"> Súly </label>
+    <input type="checkbox" id="bestpos" name="bestpos" {% if column_visibilities.bestpos == True %} checked {% endif %}>
+    <label for="name"> Pozíció</label><br>
+    <input type="checkbox" id="nation" name="nation" {% if column_visibilities.nation == True %} checked {% endif %}>
+    <label for="name"> Nemzetiség </label>
+    <input type="checkbox" id="preferredfoot" name="preferredfoot" {% if column_visibilities.preferredfoot == True %} checked {% endif %}>
+    <label for="name"> Ügyesebb láb</label>
+    <input type="checkbox" id="value" name="value" {% if column_visibilities.value == True %} checked {% endif %}>
+    <label for="name"> Piaci érték</label>
+    <input type="checkbox" id="wage" name="wage" {% if column_visibilities.wage == True %} checked {% endif %}>
+    <label for="name"> Kereset</label>
+    <input type="submit" value="Frissít">
 </form>
 
   <table  class="styled-table">
     <thead> 
         <tr>
             {% if column_visibilities.name == True %} <th> Név </th>{% endif %}
-            {% if column_visibilities.club == True %} <th> Club </th>{% endif %}
+            {% if column_visibilities.club == True %} <th> Csapat </th>{% endif %}
             {% if column_visibilities.age == True %} <th> Kor </th>{% endif %}
             {% if column_visibilities.born == True %} <th> Születési Dátum </th>{% endif %}
             {% if column_visibilities.height == True %} <th> Magasság </th>{% endif %}
