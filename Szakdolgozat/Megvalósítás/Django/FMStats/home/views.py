@@ -1,4 +1,6 @@
+from traceback import format_exc
 from urllib import request
+from django.forms import formset_factory
 from django.shortcuts import render
 from home.models import Club
 from home.models import Player
@@ -6,9 +8,6 @@ from home.models import Player
 
 def home(request):
     
-    wherestring = CreateWhereString()
-    query = "SELECT * FROM player WHERE 1=1 "+ wherestring +" ORDER BY weight desc"
-    players = Player.objects.raw(query)
     column_visibilities = {
         'name':CheckBoxValueToBoolean(request, 'name'),
         'club':CheckBoxValueToBoolean(request, 'club'),
@@ -24,7 +23,15 @@ def home(request):
     }
     ColumnVisibilitiesInit(column_visibilities)
 
-    return(render(request,'home.html',{'players':players,'column_visibilities':column_visibilities}))
+    text_searches = {'name_txt':'','club_txt':'','born_date':'','bestpos_txt':'','nation_txt':'','preferredfoot_txt':''}
+    int_searches_bottom = {'age_bottom':'','height_bottom':'','weight_bottom':'','value_bottom':'','wage_bottom':''}
+    int_searches_top = {'age_top':'','height_top':'','weight_top':'','weight_top':'','value_top':'','wage_top':''}
+    
+    wherestring = CreateWhereString(request, text_searches, int_searches_bottom, int_searches_top)
+    query = "SELECT * FROM player WHERE 1=1 "+ wherestring +" ORDER BY weight desc limit 100"
+    players = Player.objects.raw(query)
+    
+    return(render(request,'home.html',{'players':players,'column_visibilities':column_visibilities,'text_searches':text_searches,'int_searches_bottom':int_searches_bottom,'int_searches_top':int_searches_top}))
 
 
 
@@ -37,6 +44,7 @@ def CheckBoxValueToBoolean(request, name):
     except:
         return False
 
+
 def ColumnVisibilitiesInit(column_visibilities):
     for column in column_visibilities:
         if column_visibilities[column] == True:
@@ -45,6 +53,34 @@ def ColumnVisibilitiesInit(column_visibilities):
         column_visibilities[column] = True
     return
 
-def CreateWhereString():
-    wherestring = "AND name like '%%Mark%%'" 
+
+def CreateWhereString(request, text_searches, int_searches_bottom, int_searches_top):
+    wherestring = ""
+    for search in text_searches:
+        try:
+            value = request.GET[search]
+            if len(value) > 0:
+              wherestring += " AND " + search.split('_')[0] + " LIKE '%%" + value + "%%'"
+            text_searches[search] = value
+        except:
+          continue
+
+    for search in int_searches_bottom:
+        try:
+            value = request.GET[search]
+            if int(value) > -1:
+              wherestring += " AND " + search.split('_')[0] + " > " + value
+            int_searches_bottom[search] = value
+        except:
+          continue
+    
+    for search in int_searches_top:
+        try:
+            value = request.GET[search]
+            if int(value) > -1:
+              wherestring += " AND " + search.split('_')[0] + " < " + value
+            int_searches_top[search] = value
+        except:
+          continue
+
     return wherestring

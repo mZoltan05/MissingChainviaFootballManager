@@ -3,31 +3,35 @@
 {% block content %}
 
 <form action="">
-    <input type="text" id="name_txt" name="name_txt">
-    <label for="name_txt"> Név</label> &nbsp &nbsp
-    <input type="text" id="club_txt" name="club_txt">
-    <label for="club_txt"> Csapat</label>&nbsp &nbsp
-    <input type="text" id="age_txt" name="age_txt">
-    <label for="age_txt"> Kor</label> 
+    <input type="text" id="name_txt" name="name_txt" value="{{ text_searches.name_txt }}">
+    <label for="name_txt"> Név</label><br>
+    <input type="text" id="club_txt" name="club_txt" value="{{ text_searches.club_txt }}">
+    <label for="club_txt"> Csapat</label><br>
+    <input type="number" id="age_bottom" name="age_bottom" value="{{ int_searches_bottom.age_bottom }}">
+    <label for="age_bottom"> < Kor <</label>
+    <input type="number" id="age_top" name="age_top" value="{{ int_searches_top.age_top }}"> 
     <br>
-    <input type="text" id="born_txt" name="born_txt">
-    <label for="born_txt"> Születési dátum</label> &nbsp &nbsp
-    <input type="text" id="height_txt" name="height_txt">
-    <label for="height_txt"> Magasság</label> &nbsp &nbsp
-    <input type="text" id="weight_txt" name="weight_txt">
-    <label for="weight_txt"> Súly</label>
+    <input type="number" id="height_bottom" name="height_bottom" width="30" value="{{ int_searches_bottom.height_bottom }}">
+    <label for="height_int_bottom">< Magasság <</label>
+    <input type="number" id="height_top" name="height_top" width="10" value="{{ int_searches_top.height_top }}"><br>
+    <input type="number" id="weight_bottom" name="weight_bottom" value="{{ int_searches_bottom.weight_bottom }}">
+    <label for="weight_bottom"> < Súly <</label>
+    <input type="number" id="weight_top" name="weight_top" value="{{ int_searches_top.weight_top }}">
     <br>
-    <input type="text" id="position_txt" name="position_txt">
-    <label for="position_txt"> Pozíció</label>
-    <input type="text" id="nation_txt" name="nation_txt">
-    <label for="nation_txt"> Nemzetiség</label>
-    <input type="text" id="preferredfoot_txt" name="preferredfoot_txt">
+    <input type="text" id="bestpos_txt" name="bestpos_txt" value="{{ text_searches.bestpos_txt }}">
+    <label for="bestpos_txt"> Pozíció</label><br>
+    <input type="text" id="nation_txt" name="nation_txt" value="{{ text_searches.nation_txt }}">
+    <label for="nation_txt"> Nemzetiség</label><br>
+    <input type="text" id="preferredfoot_txt" name="preferredfoot_txt" value="{{ text_searches.preferredfoot_txt }}">
     <label for="preferredfoot_txt"> Ügyesebb láb</label>
     <br>
-    <input type="text" id="value_txt" name="value_txt">
-    <label for="value_txt"> Piaci érték</label>
-    <input type="text" id="wage_txt" name="wage_txt">
-    <label for="wage_txt"> Kereset</label>
+    <input type="number" id="value_bottom" name="value_bottom" value="{{ int_searches_bottom.value_bottom }}">
+    <label for="value_bottom">< Piaci érték € <</label>
+    <input type="number" id="value_top" name="value_top" value="{{ int_searches_top.value_top }}">
+    <br>
+    <input type="number" id="wage_bottom" name="wage_bottom" value="{{ int_searches_bottom.wage_bottom }}">
+    <label for="wage_bottom"> < Kereset € <</label>
+    <input type="number" id="wage_top" name="wage_top" value="{{ int_searches_top.wage_top }}">
     <br>
     <input type="checkbox" id="name" name="name" {% if column_visibilities.name == True %} checked {% endif %}>
     <label for="name"> Név</label>
