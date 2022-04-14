@@ -77,18 +77,20 @@
     
     <div class="scoreVisibilityCheckboxes">
         <h2>Pontszámok megjenelítése </h2>
-        <input type="checkbox" id="name" name="name" {% if column_visibilities.gk_properties == True %} checked {% endif %}>
-        <label for="name"> Kapusokra vonatkozó </label>
-        <input type="checkbox" id="name" name="name" {% if column_visibilities.technical_properties == True %} checked {% endif %}>
-        <label for="name"> Technikai </label>
-        <input type="checkbox" id="name" name="name" {% if column_visibilities.mental_properties == True %} checked {% endif %}>
-        <label for="name"> Szellemi </label>
-        <input type="checkbox" id="name" name="name" {% if column_visibilities.physical_properties == True %} checked {% endif %}>
-        <label for="name"> Fizikai </label>
-        <input type="checkbox" id="name" name="name" {% if column_visibilities.position_properties == True %} checked {% endif %}>
-        <label for="name"> Pozíciókra vonatkozó </label>
+        <input type="checkbox" id="gk_properties" name="gk_properties" {% if column_visibilities.gk_properties == True %} checked {% endif %}>
+        <label for="gk_properties"> Kapusokra vonatkozó </label>
+        <input type="checkbox" id="technical_properties" name="technical_properties" {% if column_visibilities.technical_properties == True %} checked {% endif %}>
+        <label for="technical_properties"> Technikai </label>
+        <input type="checkbox" id="mental_properties" name="mental_properties" {% if column_visibilities.mental_properties == True %} checked {% endif %}>
+        <label for="mental_properties"> Szellemi </label>
+        <input type="checkbox" id="physical_properties_1" name="physical_properties_1" {% if column_visibilities.physical_properties_1 == True %} checked {% endif %}>
+        <label for="physical_properties_1"> Fizikai 1 </label>
+        <input type="checkbox" id="physical_properties_2" name="physical_properties_2" {% if column_visibilities.physical_properties_2 == True %} checked {% endif %}>
+        <label for="physical_properties_2"> Fizikai 2 </label>
+        <input type="checkbox" id="position_properties" name="position_properties" {% if column_visibilities.position_properties == True %} checked {% endif %}>
+        <label for="position_properties"> Pozíciókra vonatkozó </label>
     </div>
-    <input type="submit" value="Frissít">
+    <input type="submit" value="Frissít" style="position: relative;top:-230px;">
 </form>
 
   <table  class="styled-table">
@@ -105,6 +107,89 @@
             {% if column_visibilities.preferredfoot == True %} <th> Ügyesebb láb </th>{% endif %}
             {% if column_visibilities.value == True %} <th> Piaci érték </th>{% endif %}
             {% if column_visibilities.wage == True %} <th> Kereset </th>{% endif %}
+
+            {% if column_visibilities.gk_properties == True %} <th> AerialAbility </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> CommandOfArea </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> Communication </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> Eccentricity </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> Handling </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> Kicking </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> OneOnOnes </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> Reflexes </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> RushingOut </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> TendencyToPunch </th>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <th> Throwing </th>{% endif %}
+
+            {% if column_visibilities.technical_properties == True %} <th> Corners </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Crossing </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Dribbling </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Finishing </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> FirstTouch </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Freekicks </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Heading </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> LongShots </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Longthrows </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Marking </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Passing </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> PenaltyTaking </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Tackling </th>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <th> Technique </th>{% endif %}
+
+            {% if column_visibilities.mental_properties == True %} <th> Aggression </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Anticipation </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Bravery </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Composure </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Concentration </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Vision </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Decisions </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Determination </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Flair </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Leadership </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> OffTheBall </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Positioning </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Teamwork </th>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <th> Workrate </th>{% endif %}
+
+            {% if column_visibilities.physical_properties_1 == True %} <th> Acceleration </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Agility </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Balance </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Jumping </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> LeftFoot </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> NaturalFitness </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Pace </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> RightFoot </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Stamina </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Strength </th>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <th> Consistency </th>{% endif %}
+
+            {% if column_visibilities.physical_properties_2 == True %} <th> Dirtiness </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> ImportantMatches </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> InjuryProness </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Versaility </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Adaptability </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Ambition </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Loyalty </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Pressure </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Sportsmanship </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Temperament </th>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <th> Controversy </th>{% endif %}
+
+            {% if column_visibilities.position_properties == True %} <th> Goalkeeper </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> Sweeper </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> Striker </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> AttackingMidCentral </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> AttackingMidLeft </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> AttackingMidRight </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> DefenderCentral </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> DefenderLeft </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> DefenderRight </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> DefensiveMidfielder </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> MidfielderCentral </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> MidfielderLeft </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> MidfielderRight </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> WingBackLeft </th>{% endif %}
+            {% if column_visibilities.position_properties == True %} <th> WingBackRight </th>{% endif %}
+
         </tr>
     </thead>
     <tbody>

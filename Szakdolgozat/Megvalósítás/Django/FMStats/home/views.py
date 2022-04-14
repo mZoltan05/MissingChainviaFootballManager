@@ -24,7 +24,8 @@ def home(request):
         'gk_properties':CheckBoxValueToBoolean(request, 'gk_properties'),
         'technical_properties':CheckBoxValueToBoolean(request, 'technical_properties'),
         'mental_properties':CheckBoxValueToBoolean(request, 'mental_properties'),
-        'physical_properties':CheckBoxValueToBoolean(request, 'physical_properties'),
+        'physical_properties_1':CheckBoxValueToBoolean(request, 'physical_properties_1'),
+        'physical_properties_2':CheckBoxValueToBoolean(request, 'physical_properties_2'),
         'position_properties':CheckBoxValueToBoolean(request, 'position_properties')
     }
     ColumnVisibilitiesInit(column_visibilities)
