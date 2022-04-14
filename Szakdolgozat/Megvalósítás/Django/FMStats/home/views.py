@@ -19,7 +19,13 @@ def home(request):
         'nation':CheckBoxValueToBoolean(request, 'nation'),
         'preferredfoot':CheckBoxValueToBoolean(request, 'preferredfoot'),
         'value':CheckBoxValueToBoolean(request, 'value'),
-        'wage':CheckBoxValueToBoolean(request, 'wage')
+        'wage':CheckBoxValueToBoolean(request, 'wage'),
+
+        'gk_properties':CheckBoxValueToBoolean(request, 'gk_properties'),
+        'technical_properties':CheckBoxValueToBoolean(request, 'technical_properties'),
+        'mental_properties':CheckBoxValueToBoolean(request, 'mental_properties'),
+        'physical_properties':CheckBoxValueToBoolean(request, 'physical_properties'),
+        'position_properties':CheckBoxValueToBoolean(request, 'position_properties')
     }
     ColumnVisibilitiesInit(column_visibilities)
 

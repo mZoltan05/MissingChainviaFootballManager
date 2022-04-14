@@ -2,6 +2,18 @@ body {
     background-color: lightblue;
   }
 
+  h2 {
+    text-align: center;
+  }
+
+div{
+
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5% ;
+    box-shadow: 5px 5px rgba(0,0,0,.1);
+    transition: all .4s ease;
+  
+}
+
 .styled-table {
     border-collapse: collapse;
     margin: 25px 0;
@@ -43,15 +55,31 @@ body {
 .searchInputfields {
   background-color: rgb(109, 235, 197);
   text-align: left;
-  width: 30%;
+  width: 60%;
+  height: 280px;
+  position: relative;
+  border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+  box-shadow: 5px 5px rgba(0,0,0,.1);
+  transition: all .4s ease;
+  padding-left: 10px;
 }
 
 .visibilityCheckboxes{
   background-color: rgb(179, 231, 110);
   text-align: left;
   width: 30%;
+  width: 320px;
   position: relative;
-  left: 500px;
+  left: 600px;
+  top: -280px;
+}
+
+.scoreVisibilityCheckboxes{
+  background-color: rgb(231, 229, 110);
+  text-align: left;
+  width: 23%;
+  position: relative;
+  left: 1000px;
   top: -445px;
 }
 
