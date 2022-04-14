@@ -38,3 +38,25 @@ body {
   font-weight: bold;
   color: #d14c23;
 }
+
+
+.searchInputfields {
+  background-color: rgb(109, 235, 197);
+  text-align: left;
+  width: 30%;
+}
+
+.visibilityCheckboxes{
+  background-color: rgb(179, 231, 110);
+  text-align: left;
+  width: 30%;
+  position: relative;
+  left: 500px;
+  top: -445px;
+}
+
+input[type=text]{
+  padding: 12px 20px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}

@@ -17,12 +17,15 @@ class Club(models.Model):
     class Meta:
         managed = False
         db_table = 'club'
+    
+    def __str__(self):
+        return self.name
 
 
 class Player(models.Model):
     playerid = models.CharField(primary_key=True, max_length=100)
     name = models.CharField(max_length=100, blank=True, null=True)
-    clubid = models.BigIntegerField(blank=True, null=True)
+    clubid = models.ForeignKey(Club, models.DO_NOTHING, db_column='clubid', blank=True, null=True)
     age = models.PositiveIntegerField(blank=True, null=True)
     born = models.DateField(blank=True, null=True)
     height = models.PositiveIntegerField( blank=True, null=True)
@@ -33,14 +36,17 @@ class Player(models.Model):
     preferredfoot = models.TextField(blank=True, null=True)
     value = models.PositiveIntegerField(blank=True, null=True)
     wage = models.PositiveIntegerField(blank=True, null=True)
+    scoreid = models.ForeignKey('Score', models.DO_NOTHING, db_column='scoreid', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'player'
+    def __str__(self):
+        return self.name
 
 
 class Score(models.Model):
-    playerid = models.CharField(max_length=100, blank=True, null=True)
+    playerid = models.CharField(unique=True, max_length=500, blank=True, null=True)
     aerialability = models.PositiveIntegerField( blank=True, null=True)
     commandofarea = models.PositiveIntegerField( blank=True, null=True)
     communication = models.PositiveIntegerField( blank=True, null=True)
@@ -124,3 +130,6 @@ class Score(models.Model):
     class Meta:
         managed = False
         db_table = 'score'
+
+    def __str__(self):
+        return self.name

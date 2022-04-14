@@ -59,6 +59,10 @@ def CreateWhereString(request, text_searches, int_searches_bottom, int_searches_
     for search in text_searches:
         try:
             value = request.GET[search]
+            if search in ['bestpos_txt','nation_txt']:
+                value = value.upper()
+            if search in ['name_txt','club_txt','preferredfoot_txt']:
+                value = value[0].upper() + value [1::1]
             if len(value) > 0:
               wherestring += " AND " + search.split('_')[0] + " LIKE '%%" + value + "%%'"
             text_searches[search] = value
