@@ -22,7 +22,7 @@ div{
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     position: relative;
-    top:-250px;
+    top:-450px;
 }
 
 .styled-table thead tr {
@@ -76,6 +76,15 @@ div{
   top: -280px;
 }
 
+.OrderByFields{
+  background-color: rgb(222, 186, 247);
+  text-align: left;
+  width: 23%;
+  position: relative;
+  left:1000px;
+  top: -450px;
+}
+
 .scoreVisibilityCheckboxes{
   background-color: rgb(231, 229, 110);
   text-align: left;
@@ -85,8 +94,13 @@ div{
   top: -445px;
 }
 
-input[type=text]{
+input[type=text] {
   padding: 12px 20px;
   margin: 5px 0;
   box-sizing: border-box;
+}
+
+input[name=orderby1],input[name=orderby2],input[name=orderby3],input[name=orderby4],input[name=orderby5]{
+  padding: 3px 5px;
+  margin: 5px 0;
 }

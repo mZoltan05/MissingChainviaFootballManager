@@ -48,7 +48,7 @@
         <label for="wage_bottom"> < Kereset € <</label>
         <input type="number" id="wage_top" name="wage_top" value="{{ int_searches_top.wage_top }}" style="width: 70px; height: 30px;text-align: center;">
     </div>
-        <div class="visibilityCheckboxes">
+    <div class="visibilityCheckboxes">
             <h3 style="text-align: center;">Oszlopok megjenelítése </h3>
             <input type="checkbox" id="name" name="name" {% if column_visibilities.name == True %} checked {% endif %}>
             <label for="name"> Név</label>
@@ -72,7 +72,7 @@
             <label for="name"> Piaci érték</label>
             <input type="checkbox" id="wage" name="wage" {% if column_visibilities.wage == True %} checked {% endif %}>
             <label for="name"> Kereset</label>
-        </div>
+    </div>
 
     
     <div class="scoreVisibilityCheckboxes">
@@ -90,7 +90,136 @@
         <input type="checkbox" id="position_properties" name="position_properties" {% if column_visibilities.position_properties == True %} checked {% endif %}>
         <label for="position_properties"> Pozíciókra vonatkozó </label>
     </div>
-    <input type="submit" value="Frissít" style="position: relative;top:-230px;">
+
+    <div class="OrderByFields">
+        <h2> Rendezés érték szerint </h2>
+        &nbsp;&nbsp;<input type="radio" id="asc" name="asc" value="asc">
+        <label for="asc">Növekvő</label><br>
+        &nbsp;&nbsp;<input type="radio" id="desc" name="asc" value="desc">
+        <label for="desc">Csökkenő</label><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby1"> 1. Szempont </label>&nbsp;&nbsp;
+        <input list="orderby" name="orderby1">
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby2"> 2. Szempont </label>&nbsp;&nbsp;
+        <input list="orderby" name="orderby2">
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby3"> 3. Szempont </label>&nbsp;&nbsp;
+        <input list="orderby" name="orderby3">
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby4"> 4. Szempont </label>&nbsp;&nbsp;
+        <input list="orderby" name="orderby4">
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby5"> 5. Szempont </label>&nbsp;&nbsp;
+        <input list="orderby" name="orderby5">
+        <datalist id="orderby">
+            {% for column in column_visibilities %}
+                {% if column == 'age' and column_visibilities.age == True %}<option value="Kor">{% endif %}
+                {% if column == 'height' and column_visibilities.height == True %}<option value="Magassság">{% endif %}
+                {% if column == 'weight' and column_visibilities.weight == True %}<option value="Súly">{% endif %}
+                {% if column == 'value' and column_visibilities.value == True %}<option value="Érték">{% endif %}
+                {% if column == 'wage' and column_visibilities.wage == True %}<option value="Fizetés">{% endif %}
+
+                {% if column == 'gk_properties' and column_visibilities.gk_properties == True %}
+                    <option value="aerialability">
+                    <option value="commandofarea">
+                    <option value="communication">
+                    <option value="eccentricity">
+                    <option value="handling">
+                    <option value="kicking">
+                    <option value="oneonones">
+                    <option value="reflexes">
+                    <option value="rushingout">
+                    <option value="tendencytopunch">
+                    <option value="throwing">
+                {% endif %}
+                
+                {% if column == 'technical_properties' and column_visibilities.technical_properties == True %}
+                    <option value="corners">
+                    <option value="crossing">
+                    <option value="dribbling">
+                    <option value="finishing">
+                    <option value="firsttouch">
+                    <option value="freekicks">
+                    <option value="heading">
+                    <option value="longshots">
+                    <option value="longthrows">
+                    <option value="marking">
+                    <option value="passing">
+                    <option value="penaltytaking">
+                    <option value="tackling">
+                    <option value="technique">
+                {% endif %}
+
+                {% if column == 'mental_properties' and column_visibilities.mental_properties == True %}
+                    <option value="aggression">
+                    <option value="anticipation">
+                    <option value="bravery">
+                    <option value="composure">
+                    <option value="concentration">
+                    <option value="vision">
+                    <option value="decisions">
+                    <option value="determination">
+                    <option value="flair">
+                    <option value="leadership">
+                    <option value="offtheball">
+                    <option value="positioning">
+                    <option value="teamwork">
+                    <option value="workrate">
+                {% endif %}
+
+                {% if column == 'physical_properties_1' and column_visibilities.physical_properties_1 == True %}
+                    <option value="acceleration">
+                    <option value="agility">
+                    <option value="balance">
+                    <option value="jumping">
+                    <option value="leftfoot">
+                    <option value="naturalfitness">
+                    <option value="pace">
+                    <option value="rightfoot">
+                    <option value="stamina">
+                    <option value="strength">
+                    <option value="consistency">
+                {% endif %}
+
+                {% if column == 'physical_properties_2' and column_visibilities.physical_properties_2 == True %}
+                    <option value="dirtiness">
+                    <option value="importantmatches">
+                    <option value="injuryproness">
+                    <option value="versatility">
+                    <option value="adaptability">
+                    <option value="ambition">
+                    <option value="loyalty">
+                    <option value="pressure">
+                    <option value="professional">
+                    <option value="sportsmanship">
+                    <option value="temperament">
+                    <option value="controversy">
+                {% endif %}
+
+                {% if column == 'position_properties' and column_visibilities.position_properties == True %}
+                    <option value="positionsdesc">
+                    <option value="goalkeeper">
+                    <option value="sweeper">
+                    <option value="striker">
+                    <option value="attackingmidcentral">
+                    <option value="attackingmidleft">
+                    <option value="attackingmidright">
+                    <option value="defendercentral">
+                    <option value="defenderleft">
+                    <option value="defenderright">
+                    <option value="defensivemidfielder">
+                    <option value="midfieldercentral">
+                    <option value="midfielderleft">
+                    <option value="midfielderright">
+                    <option value="wingbackleft">
+                    <option value="wingbackright">
+                {% endif %}
+            {% endfor %}
+        </datalist>
+        
+        
+    </div>
+    <input type="submit" value="Frissít" style="position: relative;top:-450px;">
 </form>
 
   <table  class="styled-table">

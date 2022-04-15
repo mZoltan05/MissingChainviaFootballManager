@@ -33,12 +33,18 @@ def home(request):
     text_searches = {'name_txt':'','club_txt':'','born_date':'','bestpos_txt':'','nation_txt':'','preferredfoot_txt':''}
     int_searches_bottom = {'age_bottom':'','height_bottom':'','weight_bottom':'','value_bottom':'','wage_bottom':''}
     int_searches_top = {'age_top':'','height_top':'','weight_top':'','weight_top':'','value_top':'','wage_top':''}
-    
+
+    try:
+        asc = request.GET['asc']
+    except:
+        asc = 'asc'
+    orderByList = {'orderby1':request.GET['orderby1'],'orderby2':request.GET['orderby2'],'orderby3':request.GET['orderby3'],'orderby4':request.GET['orderby4'],'orderby5':request.GET['orderby5'],'asc':asc}
+
     wherestring = CreateWhereString(request, text_searches, int_searches_bottom, int_searches_top)
     query = "SELECT * FROM player WHERE 1=1 "+ wherestring +" ORDER BY weight desc limit 100"
     players = Player.objects.raw(query)
     
-    return(render(request,'home.html',{'players':players,'column_visibilities':column_visibilities,'text_searches':text_searches,'int_searches_bottom':int_searches_bottom,'int_searches_top':int_searches_top}))
+    return(render(request,'home.html',{'players':players,'column_visibilities':column_visibilities,'text_searches':text_searches,'int_searches_bottom':int_searches_bottom,'int_searches_top':int_searches_top,'orderbylist':orderByList}))
 
 
 
@@ -95,3 +101,8 @@ def CreateWhereString(request, text_searches, int_searches_bottom, int_searches_
           continue
 
     return wherestring
+
+def CreateOrderByList(request):
+    orderByList=[]
+
+    return orderByList
