@@ -206,6 +206,90 @@
             {% if column_visibilities.preferredfoot == True %} <td> {{ p.preferredfoot }} </td>{% endif %}
             {% if column_visibilities.value == True %} <td> {{ p.value }} {%if p.value > 0 %} € {% endif %} </td>{% endif %}
             {% if column_visibilities.wage == True %} <td> {{ p.wage }} {%if p.wage > 0 %} € {% endif %}</td>{% endif %}
+
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.aerialability }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.commandofarea }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.communication }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.eccentricity }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.handling }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.kicking }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.oneonones }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.reflexes }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.rushingout }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.tendencytopunch }} </td>{% endif %}
+            {% if column_visibilities.gk_properties == True %} <td> {{ p.scoreid.throwing }} </td>{% endif %}
+
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.corners }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.crossing }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.dribbling }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.finishing }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.firsttouch }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.freekicks }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.heading }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.longshots }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.longthrows }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.marking }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.passing }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.penaltytaking }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.tackling }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.technique }} </td>{% endif %}
+            {% if column_visibilities.technical_properties == True %} <td> {{ p.scoreid.aggression }} </td>{% endif %}
+
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.anticipation }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.bravery }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.composure }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.concentration }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.vision }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.decisions }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.determination }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.flair }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.leadership }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.offtheball }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.positioning }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.teamwork }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.workrate }} </td>{% endif %}
+            {% if column_visibilities.mental_properties == True %} <td> {{ p.scoreid.acceleration }} </td>{% endif %}
+
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.agility }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.balance }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.jumping }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.leftfoot }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.naturalfitness }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.pace }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.rightfoot }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.stamina }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.strength }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.consistency }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_1 == True %} <td> {{ p.scoreid.dirtiness }} </td>{% endif %}
+
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.importantmatches }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.injuryproness }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.versatility }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.adaptability }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.ambition }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.loyalty }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.pressure }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.professional }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.sportsmanship }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.temperament }} </td>{% endif %}
+            {% if column_visibilities.physical_properties_2 == True %} <td> {{ p.scoreid.controversy }} </td>{% endif %}
+
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.positionsdesc }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.goalkeeper }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.sweeper }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.striker }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.attackingmidcentral }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.attackingmidleft }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.attackingmidright }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.defendercentral }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.defenderleft }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.defenderright }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.defensivemidfielder }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.midfieldercentral }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.midfielderleft }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.midfielderright }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.wingbackleft }} </td>{% endif %}
+            {% if column_visibilities.position_properties == True %} <td> {{ p.scoreid.wingbackright }} </td>{% endif %}
         </tr>
         {% endfor %}
     </tbody>
