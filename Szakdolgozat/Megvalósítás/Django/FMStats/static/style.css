@@ -53,6 +53,15 @@ div{
   color: #d14c23;
 }
 
+.backToHome{
+  width: 140px;
+  height: 60px;
+  background-color: #e2d3a2;
+  position: relative;
+  left:1%;
+
+}
+
 .clubfilters{
   background-color: rgb(109, 235, 197);
   text-align: left;

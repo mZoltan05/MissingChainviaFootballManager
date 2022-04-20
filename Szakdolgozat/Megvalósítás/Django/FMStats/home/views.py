@@ -50,7 +50,7 @@ def home(request):
     return(render(request,'home.html',{'players':players,'column_visibilities':column_visibilities,'text_searches':text_searches,'int_searches_bottom':int_searches_bottom,'int_searches_top':int_searches_top,'orderbylist':orderByList}))
 
 def clubwithchosen(request,chosenclub):
-    text_searches = {'clubname_txt':chosenclub}
+    text_searches = {'name_txt':chosenclub}
     query = "SELECT * FROM club WHERE 1=1 AND name LIKE '%%"+chosenclub+"%%'" # + wherestring + " limit 500"
     clubs = Club.objects.raw(query)
     return(render(request,'club.html',{'clubs':clubs,'text_searches':text_searches}))
