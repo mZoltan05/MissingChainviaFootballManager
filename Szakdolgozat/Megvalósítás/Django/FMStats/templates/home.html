@@ -92,29 +92,29 @@
     </div>
 
     <div class="OrderByFields">
-        <h2> Rendezés érték szerint </h2>
-        &nbsp;&nbsp;<input type="radio" id="asc" name="asc" value="asc">
+        <h2> Rendezés tulajdonság szerint </h2>
+        &nbsp;&nbsp;<input type="radio" id="asc" name="asc" value="asc"> <!-- TODO                  -->
         <label for="asc">Növekvő</label><br>
         &nbsp;&nbsp;<input type="radio" id="desc" name="asc" value="desc">
         <label for="desc">Csökkenő</label><br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby1"> 1. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby1">
+        <input list="orderby" name="orderby1" value="{{ orderbylist.orderby1 }}">
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby2"> 2. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby2">
+        <input list="orderby" name="orderby2" value="{{ orderbylist.orderby2 }}">
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby3"> 3. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby3">
+        <input list="orderby" name="orderby3" value="{{ orderbylist.orderby3 }}">
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby4"> 4. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby4">
+        <input list="orderby" name="orderby4" value="{{ orderbylist.orderby4 }}">
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby5"> 5. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby5">
+        <input list="orderby" name="orderby5" value="{{ orderbylist.orderby5 }}">
         <datalist id="orderby">
             {% for column in column_visibilities %}
                 {% if column == 'age' and column_visibilities.age == True %}<option value="Kor">{% endif %}
-                {% if column == 'height' and column_visibilities.height == True %}<option value="Magassság">{% endif %}
+                {% if column == 'height' and column_visibilities.height == True %}<option value="Magasság">{% endif %}
                 {% if column == 'weight' and column_visibilities.weight == True %}<option value="Súly">{% endif %}
                 {% if column == 'value' and column_visibilities.value == True %}<option value="Érték">{% endif %}
                 {% if column == 'wage' and column_visibilities.wage == True %}<option value="Fizetés">{% endif %}
@@ -216,15 +216,12 @@
                 {% endif %}
             {% endfor %}
         </datalist>
-        
-        
     </div>
     <input type="submit" value="Frissít" style="position: relative;top:-450px;">
 </form>
-
   <table  class="styled-table">
     <thead> 
-        <tr>
+        <tr class="header">
             {% if column_visibilities.name == True %} <th> Név </th>{% endif %}
             {% if column_visibilities.club == True %} <th> Csapat </th>{% endif %}
             {% if column_visibilities.age == True %} <th> Kor </th>{% endif %}
@@ -325,7 +322,7 @@
         {% for p in players %}
         <tr>
             {% if column_visibilities.name == True %} <td> {{ p.name }} </td>{% endif %}
-            {% if column_visibilities.club == True %} <td> {{ p.club}} </td>{% endif %}
+            {% if column_visibilities.club == True %} <td><a href="{% url 'clubwithchosen' chosenclub=p.club %}"> {{ p.club }} </a> </td>{% endif %}
             {% if column_visibilities.age == True %} <td> {{ p.age }} </td>{% endif %}
             {% if column_visibilities.born == True %} <td> {{ p.born }} </td>{% endif %}
             {% if column_visibilities.height == True %} <td> {{ p.height }} </td>{% endif %}
@@ -423,5 +420,4 @@
         {% endfor %}
     </tbody>
   </table>
-
 {% endblock %}
