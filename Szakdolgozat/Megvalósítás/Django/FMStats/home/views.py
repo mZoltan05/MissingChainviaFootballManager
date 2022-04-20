@@ -43,7 +43,7 @@ def home(request):
     
     wherestring = CreateWhereString(request, text_searches, int_searches_bottom, int_searches_top)
 
-    query = "SELECT * FROM player WHERE 1=1 "+ wherestring + orderByString + " limit 500"
+    query = "SELECT * FROM player WHERE 1=1 "+ wherestring + orderByString + " limit 200"
     #print(query)
     players = Player.objects.raw(query)
     
@@ -59,7 +59,7 @@ def clubwithchosen(request,chosenclub):
 def club(request):
     text_searches = {'name_txt':'','division_txt':'','based_txt':''}
     wherestring = CreateWhereString(request,text_searches,{},{})
-    print(wherestring)
+    #print(wherestring)
     query = "SELECT * FROM club WHERE 1=1 " + wherestring #limit 500"
     clubs = Club.objects.raw(query)
     return(render(request,'club.html',{'clubs':clubs,'text_searches':text_searches}))
@@ -92,7 +92,7 @@ def ColumnVisibilitiesInit(column_visibilities):
 def CreateWhereString(request, text_searches, int_searches_bottom, int_searches_top):
     wherestring = ""
     for search in text_searches:
-        print(search)
+        #print(search)
         try:
             value = request.GET[search]
             if search in ['bestpos_txt','nation_txt']:
