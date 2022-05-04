@@ -93,24 +93,34 @@
 
     <div class="OrderByFields">
         <h2> Rendezés tulajdonság szerint </h2>
-        &nbsp;&nbsp;<input type="radio" id="asc" name="asc" value="asc"> <!-- TODO                  -->
+       <!--&nbsp;&nbsp;<input type="radio" id="asc" name="asc" value="asc">               
         <label for="asc">Növekvő</label><br>
         &nbsp;&nbsp;<input type="radio" id="desc" name="asc" value="desc">
-        <label for="desc">Csökkenő</label><br>
+        <label for="desc">Csökkenő</label><br>  -->
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby1"> 1. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby1" value="{{ orderbylist.orderby1 }}">
+        <input list="orderby" name="orderby1" value="{{ orderbylist.orderby1.0 }}">
+            <input type="checkbox" id="desc1" name="desc1" {% if orderbylist.orderby1.1 == 'desc' %} checked {% endif %} >
+            <label for="desc1"> Csökkenő</label>
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby2"> 2. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby2" value="{{ orderbylist.orderby2 }}">
+        <input list="orderby" name="orderby2" value="{{ orderbylist.orderby2.0 }}">
+            <input type="checkbox" id="desc2" name="desc2" {% if orderbylist.orderby2.1 == 'desc' %} checked {% endif %} >
+            <label for="desc2"> Csökkenő</label>
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby3"> 3. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby3" value="{{ orderbylist.orderby3 }}">
+        <input list="orderby" name="orderby3" value="{{ orderbylist.orderby3.0 }}">
+            <input type="checkbox" id="desc3" name="desc3" {% if orderbylist.orderby3.1 == 'desc' %} checked {% endif %} >
+            <label for="desc3"> Csökkenő</label>
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby4"> 4. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby4" value="{{ orderbylist.orderby4 }}">
+        <input list="orderby" name="orderby4" value="{{ orderbylist.orderby4.0 }}">
+            <input type="checkbox" id="desc4" name="desc4" {% if orderbylist.orderby4.1 == 'desc' %} checked {% endif %} >
+            <label for="desc4"> Csökkenő</label>
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;<label for="orderby5"> 5. Szempont </label>&nbsp;&nbsp;
-        <input list="orderby" name="orderby5" value="{{ orderbylist.orderby5 }}">
+        <input list="orderby" name="orderby5" value="{{ orderbylist.orderby5.0 }}">
+            <input type="checkbox" id="desc5" name="desc5" {% if orderbylist.orderby5.1 == 'desc' %} checked {% endif %} >
+            <label for="desc5"> Csökkenő</label>   
         <datalist id="orderby">
             {% for column in column_visibilities %}
                 {% if column == 'age' and column_visibilities.age == True %}<option value="Kor">{% endif %}

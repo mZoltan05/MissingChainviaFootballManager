@@ -5,21 +5,21 @@ class Logic:
     def CreateOrderByString(orderByList):
         orderByString = ''
         for column in orderByList:
-            if orderByList[column] != '' and column != 'asc' and ( orderByList[column] in [f.name for f in Player._meta.get_fields()] or  orderByList[column] in [f.name for f in Score._meta.get_fields()] or orderByList[column] in ['Súly','Kor','Magasság','Érték','Fizetés']):
-                if orderByList[column] == 'Súly':
-                    orderByString += ' Weight, '
-                elif orderByList[column] == 'Kor':
-                    orderByString += ' Age, '
-                elif orderByList[column] == 'Magasság':
-                    orderByString += ' Height, '
-                elif orderByList[column] == 'Érték':
-                    orderByString += ' Value, '
-                elif orderByList[column] == 'Fizetés':
-                    orderByString += ' Wage, '
+            if orderByList[column] != '' and ( orderByList[column][0] in [f.name for f in Player._meta.get_fields()] or  orderByList[column][0] in [f.name for f in Score._meta.get_fields()] or orderByList[column][0] in ['Súly','Kor','Magasság','Érték','Fizetés']):
+                if orderByList[column][0] == 'Súly':
+                    orderByString += ' Weight ' + orderByList[column][1] + ', '
+                elif orderByList[column][0] == 'Kor':
+                    orderByString += ' Age ' + orderByList[column][1] + ', '
+                elif orderByList[column][0] == 'Magasság':
+                    orderByString += ' Height ' + orderByList[column][1] + ', '
+                elif orderByList[column][0] == 'Érték':
+                    orderByString += ' Value ' + orderByList[column][1] + ', '
+                elif orderByList[column][0] == 'Fizetés':
+                    orderByString += ' Wage ' + orderByList[column][1] + ', '
                 else:
-                    orderByString += orderByList[column] +', '
+                    orderByString += orderByList[column][0]+' ' + orderByList[column][1] + ', '
         if orderByString != '':
-            orderByString = ' ORDER BY ' + orderByString[0:-2] + ' ' + orderByList['asc']
+            orderByString = ' ORDER BY ' + orderByString[0:-2]
         return orderByString
 
 
@@ -81,36 +81,16 @@ class Logic:
 
 
     def CreateOrderByList(request):
-        orderByList = {'orderby1':'','orderby2':'','orderby3':'','orderby4':'','orderby5':'','asc':''}
+        orderByList = {'orderby1':['',''],'orderby2':['',''],'orderby3':['',''],'orderby4':['',''],'orderby5':['','']}
         
-        try:
-            orderByList['asc'] = request.GET['asc']
-        except:
-            orderByList['asc'] = 'asc'
-
-        try:
-            orderByList['orderby1'] = request.GET['orderby1']
-        except:
-            pass
-
-        try:
-            orderByList['orderby2'] = request.GET['orderby2']
-        except:
-            pass
-
-        try:
-            orderByList['orderby3'] = request.GET['orderby3']
-        except:
-            pass
-
-        try:
-            orderByList['orderby4'] = request.GET['orderby4']
-        except:
-            pass
-
-        try:
-            orderByList['orderby5'] = request.GET['orderby5']
-        except:
-            pass
-
+        for i in range(1,6):
+            try:
+                orderByList['orderby'+str(i)][0] = request.GET['orderby'+str(i)]
+            except:
+                pass
+            try:
+                if request.GET['desc'+str(i)] == 'on':
+                    orderByList['orderby'+str(i)][1] = 'desc'
+            except:
+                orderByList['orderby'+str(i)][1] = 'asc'
         return orderByList

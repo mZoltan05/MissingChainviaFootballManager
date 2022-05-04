@@ -31,7 +31,5 @@ class PlayersInstance:
         self.query = "SELECT * FROM player p inner join score_bak s ON CAST(p.playerid AS INT) = s.playerid WHERE 1=1 "+ self.wherestring + self.orderByString + " limit 200"
 
     def GetPlayers(self):
-        print('*******************************************************************')
         print(self.query)
-        print('*******************************************************************')
         return Player.objects.raw(self.query)
