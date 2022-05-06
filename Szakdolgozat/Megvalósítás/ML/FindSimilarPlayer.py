@@ -89,9 +89,7 @@ def FindPlayersToReturn(players_withoutid, playerid, k, id):
 
     kmeans = KMeans(n_clusters=k, random_state=0).fit(players_withoutid)
     y_kmeans = kmeans.predict(players_withoutid)
-    print("**************************")
-    print(len(np.where(playerid.values == id)))
-    positionOfBasePlayer = 1#np.where(playerid.values == id)[0][0]
+    positionOfBasePlayer = playerid.values.tolist().index(int(id))
     clusterOfBasePlayer = y_kmeans[positionOfBasePlayer]
 
     playerid = np.delete(playerid.values, positionOfBasePlayer)
@@ -103,33 +101,11 @@ def FindPlayersToReturn(players_withoutid, playerid, k, id):
     for i in range(len(y_kmeans)):
         if y_kmeans[i] == clusterOfBasePlayer:
             foundedPlayers.append(playerid[i])
-    print(foundedPlayers)
+    return foundedPlayers
 
 
 
 def main(id):
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
-    print()
     from sklearn.preprocessing import StandardScaler
 
     players = FindSimilarPlayers(id)
