@@ -107,7 +107,6 @@ def FindPlayersToReturn(players_withoutid, playerid, k, id):
 
 def main(id):
     from sklearn.preprocessing import StandardScaler
-
     players = FindSimilarPlayers(id)
     dbConnection.close();
 
@@ -117,7 +116,7 @@ def main(id):
 
     k = DetermineTheOptimalKValue(players_withoutid)
 
-    print(FindPlayersToReturn(players_withoutid,playerid,k, id))
+    print(FindPlayersToReturn(players_withoutid,playerid, k, id),end="")
     
 
 
