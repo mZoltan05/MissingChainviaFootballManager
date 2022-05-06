@@ -96,6 +96,4 @@ class Logic:
                     orderByList['orderby'+str(i)][1] = 'desc'
             except:
                 orderByList['orderby'+str(i)][1] = 'asc'
-        s2_out = subprocess.check_output([sys.executable,"test.py",'10'])
-        print(s2_out)
         return orderByList

@@ -91,6 +91,8 @@
         <label for="position_properties"> Pozíciókra vonatkozó </label>
     </div>
 
+    
+
     <div class="OrderByFields">
         <h2> Rendezés tulajdonság szerint </h2>
        <!--&nbsp;&nbsp;<input type="radio" id="asc" name="asc" value="asc">               
@@ -229,6 +231,12 @@
     </div>
     <input type="submit" value="Frissít" style="position: relative;top:-450px;">
 </form>
+<div class="MachineLearningAlgorythms">
+    <h2> Kiegészítő lehetőségek </h2>
+    <form action="{% url 'findSimilarPlayersMode' %}">
+        <input type="submit" value="Hasonló játékosok keresése" onclick="alert('Válasszon ki egy játékost a nevére való kattintással, és a rendszer hozzá hasonló játékosokat fog kilistázni.')" style="font-size: 16px;">
+    </form>
+</div>
   <table  class="styled-table">
     <thead> 
         <tr class="header">
@@ -331,7 +339,8 @@
     <tbody>
         {% for p in players %}
         <tr>
-            {% if column_visibilities.name == True %} <td> {{ p.name }} </td>{% endif %}
+            {% if column_visibilities.name == True and isFindSimilarPlayersModeOn == True %} <td> <a  onclick="alert('A játékosok metalálása néhány másodpercbe telhet.')" href="{% url 'foundedplayers' playerid=p.playerid %}"> {{ p.name }} </a> </td>{% endif %}
+            {% if column_visibilities.name == True and isFindSimilarPlayersModeOn != True %} <td> {{ p.name }} </td>{% endif %}
             {% if column_visibilities.club == True %} <td><a href="{% url 'clubwithchosen' chosenclub=p.club %}"> {{ p.club }} </a> </td>{% endif %}
             {% if column_visibilities.age == True %} <td> {{ p.age }} </td>{% endif %}
             {% if column_visibilities.born == True %} <td> {{ p.born }} </td>{% endif %}

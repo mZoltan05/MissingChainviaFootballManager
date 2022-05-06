@@ -114,6 +114,15 @@ div{
   top: -445px;
 }
 
+.MachineLearningAlgorythms{
+  background-color: rgb(255, 208, 181);
+  text-align: left;
+  width: 23%;
+  position: relative;
+  left: 1000px;
+  top: -445px;
+}
+
 input[type=text] {
   padding: 12px 20px;
   margin: 5px 0;

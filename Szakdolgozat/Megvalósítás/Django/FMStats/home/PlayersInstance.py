@@ -12,6 +12,7 @@ class PlayersInstance:
     orderByString = ""
     wherestring = ""
     query = ""
+    playerid = 0
 
     def __init__(self,request):
         columns = ['name','club','age','born','height','weight','bestpos','nation','preferredfoot','value','wage','gk_properties','technical_properties','mental_properties','physical_properties_1','physical_properties_2','position_properties']

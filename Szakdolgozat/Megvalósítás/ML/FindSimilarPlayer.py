@@ -8,8 +8,6 @@ from sklearn.preprocessing import StandardScaler
 
 def main(id):
     
-
-
     alchemyEngine = create_engine(Settings.dbConString, pool_recycle=3600);
     dbConnection = alchemyEngine.connect();
 
