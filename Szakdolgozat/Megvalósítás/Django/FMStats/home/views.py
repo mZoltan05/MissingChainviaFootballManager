@@ -7,10 +7,9 @@ import subprocess
 
 def home(request):
     instance = PlayersInstance(request)
-    players = instance.GetPlayers()
-    #print(Club._meta.get_fields())
-    #print([f.name for f in Club._meta.get_fields()])
-    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList}))
+    players = instance.GetPlayers(request)
+    instance.bestposForSearchUnderratedPlayers = ' '
+    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'bestposForSearchUnderratedPlayers':instance.bestposForSearchUnderratedPlayers}))
 
 def clubwithchosen(request,chosenclub):
     text_searches = {'name_txt':chosenclub}
@@ -34,10 +33,24 @@ def foundedplayers(request,playerid):
     print(subprocess_output)
     query = "SELECT * FROM player WHERE playerid in (" + subprocess_output+ " ) limit 100"
     players = Player.objects.raw(query)
-    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'isFindSimilarPlayersModeOn':True}))
+    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'isFindSimilarPlayersModeOn':True,'bestposForSearchUnderratedPlayers':instance.bestposForSearchUnderratedPlayers}))
 
 
 def findSimilarPlayersMode(request):
     instance = PlayersInstance(request)
-    players = instance.GetPlayers()
-    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'isFindSimilarPlayersModeOn':True}))
+    players = instance.GetPlayers(request)
+    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'isFindSimilarPlayersModeOn':True,'bestposForSearchUnderratedPlayers':instance.bestposForSearchUnderratedPlayers}))
+
+def findUnderratedPlayers(request):
+    instance = PlayersInstance(request)
+    try:
+        instance.bestposForSearchUnderratedPlayers = request.GET['bestposForSearchUnderratedPlayers']
+    except:
+        instance.bestposForSearchUnderratedPlayers = ' '
+    subprocess_output = str(subprocess.run(["python", "..\..\ML\FindUnderratedPlayersOnPosition.py",instance.bestposForSearchUnderratedPlayers], capture_output=True).stdout)[3:-2]
+    subprocess_output = "'"+subprocess_output.replace(", ","', '")+"'"
+    #query = "SELECT * FROM player WHERE playerid in (" + subprocess_output+ " ) limit 100"
+    instance.wherestring = " AND p.playerid IN (" + subprocess_output+ " ) "
+    players = instance.GetPlayers(request)
+    #players = Player.objects.raw(query)
+    return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'bestposForSearchUnderratedPlayers':instance.bestposForSearchUnderratedPlayers}))

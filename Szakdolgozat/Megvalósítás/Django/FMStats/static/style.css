@@ -117,10 +117,14 @@ div{
 .MachineLearningAlgorythms{
   background-color: rgb(255, 208, 181);
   text-align: left;
-  width: 23%;
+  width: 25%;
   position: relative;
   left: 1000px;
   top: -445px;
+}
+
+.submit{
+  height: 40px;
 }
 
 input[type=text] {

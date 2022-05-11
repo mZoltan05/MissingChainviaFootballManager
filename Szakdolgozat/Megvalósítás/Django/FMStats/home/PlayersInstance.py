@@ -13,6 +13,7 @@ class PlayersInstance:
     wherestring = ""
     query = ""
     playerid = 0
+    bestposForSearchUnderratedPlayers = ""
 
     def __init__(self,request):
         columns = ['name','club','age','born','height','weight','bestpos','nation','preferredfoot','value','wage','gk_properties','technical_properties','mental_properties','physical_properties_1','physical_properties_2','position_properties']
@@ -27,10 +28,12 @@ class PlayersInstance:
         self.orderByList = Logic.CreateOrderByList(request)
         self.orderByString = Logic.CreateOrderByString(self.orderByList)
 
-        self.wherestring = Logic.CreateWhereString(request, self.text_searches, self.int_searches_bottom, self.int_searches_top)
+        
+    def GetPlayers(self,request):
+
+        print(self.query)
+        self.wherestring = Logic.CreateWhereString(request,self.wherestring , self.text_searches, self.int_searches_bottom, self.int_searches_top)
 
         self.query = "SELECT * FROM player p inner join score_bak s ON CAST(p.playerid AS INT) = s.playerid WHERE 1=1 "+ self.wherestring + self.orderByString + " limit 200"
 
-    def GetPlayers(self):
-        print(self.query)
         return Player.objects.raw(self.query)

@@ -16,7 +16,7 @@
         <input type="number" id="age_top" name="age_top" value="{{ int_searches_top.age_top }}" style="width: 40px; height: 30px;text-align: center;">
         
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" id="bestpos_txt" name="bestpos_txt" value="{{ text_searches.bestpos_txt }}">
+        <input list="bestpos" type="text" id="bestpos_txt" name="bestpos_txt" value="{{ text_searches.bestpos_txt }}">
         <label for="bestpos_txt"> Pozíció</label>
         <br>
         <input type="number" id="height_bottom" name="height_bottom" width="30" value="{{ int_searches_bottom.height_bottom }}" style="width: 40px; height: 30px;text-align: center;">
@@ -47,6 +47,16 @@
         <input type="number" id="wage_bottom" name="wage_bottom" value="{{ int_searches_bottom.wage_bottom }}" style="width: 70px; height: 30px;text-align: center;">
         <label for="wage_bottom"> < Kereset € <</label>
         <input type="number" id="wage_top" name="wage_top" value="{{ int_searches_top.wage_top }}" style="width: 70px; height: 30px;text-align: center;">
+        
+        <datalist id="bestpos">
+            <option value="ST">
+            <option value="AM">
+            <option value="DM">
+            <option value="M">
+            <option value="WB">
+            <option value="D">
+            <option value="GK">
+        </datalist>
     </div>
     <div class="visibilityCheckboxes">
             <h3 style="text-align: center;">Oszlopok megjenelítése </h3>
@@ -234,7 +244,17 @@
 <div class="MachineLearningAlgorythms">
     <h2> Kiegészítő lehetőségek </h2>
     <form action="{% url 'findSimilarPlayersMode' %}">
+        &nbsp;&nbsp;
         <input type="submit" value="Hasonló játékosok keresése" onclick="alert('Válasszon ki egy játékost a nevére való kattintással, és a rendszer hozzá hasonló játékosokat fog kilistázni.')" style="font-size: 16px;">
+    </form>
+    <form action="{% url 'findUnderratedPlayers' %}">
+        <br>
+        &nbsp;&nbsp;
+        <input type="submit" value="Alulértékelt játékosok keresése" onclick="alert('####################')" style="font-size: 16px;">
+        &nbsp;&nbsp;
+        <input list="bestpos" id="bestposForSearchUnderratedPlayers" name="bestposForSearchUnderratedPlayers" value="{{ bestposForSearchUnderratedPlayers }}" style="width: 45px; height:15px;">
+        <label for="bestposForSearchUnderratedPlayers"> Pozíció</label>
+    
     </form>
 </div>
   <table  class="styled-table">

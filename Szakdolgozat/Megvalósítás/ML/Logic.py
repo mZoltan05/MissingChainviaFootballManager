@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn import linear_model
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
 
@@ -7,12 +8,15 @@ from sklearn.cluster import KMeans
 
 
 
-class FindSimilarPlayer_Logic:
+class Logic:
     
   
-    def __init__(self, dbConnection, id):
+    def __init__(self, dbConnection, param):
         self.dbConnection = dbConnection
-        self.id = id
+        if str(type(param))[8:-2] == 'int': 
+            self.id = param
+        else:
+            self.pos = param
     
     def FindSimilarPlayers(self):
 
@@ -104,3 +108,42 @@ class FindSimilarPlayer_Logic:
             if y_kmeans[i] == clusterOfBasePlayer:
                 foundedPlayers.append(playerid[i])
         return foundedPlayers
+
+    def GetPlayersOnPosition(self):
+        if self.pos == 'GK':
+            features = 'aerialability, commandofarea, communication, eccentricity, handling, kicking, oneonones, reflexes, rushingout, tendencytopunch, throwing'
+        else:
+            features = 'corners, crossing, dribbling, finishing, firsttouch, freekicks, heading, longshots, longthrows, marking, passing, penaltytaking, tackling, technique, aggression, anticipation, bravery, composure, concentration, vision, decisions, determination, flair, leadership, offtheball, positioning, teamwork, workrate, acceleration, agility, balance, jumping, leftfoot, naturalfitness, pace, rightfoot, stamina, strength, consistency, dirtiness, importantmatches, injuryproness, versatility, adaptability, ambition, loyalty, pressure, professional, sportsmanship, temperament, controversy'
+        playersOnPosition  = pd.read_sql("""
+                                            
+                                            SELECT 
+                                                s.playerid ,  value,
+                                                """ +features+ """
+                                            FROM 
+                                                (SELECT * FROM player WHERE value > 0 and bestpos LIKE '%%"""+self.pos+"""%%') p
+                                            INNER JOIN 
+                                                score_bak s
+                                            ON p.score_id = s.playerid
+                                            """, self.dbConnection)
+        return playersOnPosition
+
+
+    def GetUnderratedPlayers(self):
+        players = self.GetPlayersOnPosition()
+        playerIds = players['playerid']
+        value = players['value']
+        playersWithoutIdAndValue = players.drop(columns = ['playerid','value'])
+        
+        reg = linear_model.LinearRegression()
+        reg.fit(playersWithoutIdAndValue,value)
+        y = reg.predict(playersWithoutIdAndValue)
+        
+        ids = []
+        diffs = []
+        for i in range(len(y)):
+            if y[i] > players.value[i]:
+                ids.append(playerIds[i])
+                diffs.append(round(y[i]-players.value[i]))
+        underratedPlayers = {'PlayerId':ids,'Differences':diffs}
+        return list(pd.DataFrame(underratedPlayers).sort_values(by=['Differences'],ascending=False).PlayerId.head(100))
+    

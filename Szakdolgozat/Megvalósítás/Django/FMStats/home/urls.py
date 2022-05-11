@@ -10,6 +10,7 @@ urlpatterns = [
     path(r'^clubwithchosen/(?P<chosenclub>)/$',views.clubwithchosen, name='clubwithchosen'),
     path(r'^foundedplayers/(?P<playerid>)/$',views.foundedplayers, name='foundedplayers'),
     path('findSimilarPlayersMode',views.findSimilarPlayersMode, name='findSimilarPlayersMode'),
+    path('findUnderratedPlayers',views.findUnderratedPlayers, name='findUnderratedPlayers'),
     path('club',views.club, name='club')
     
 ]

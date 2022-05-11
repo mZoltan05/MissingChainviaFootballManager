@@ -1,7 +1,5 @@
-from re import sub
 from home.models import Player, Score
-import sys
-import subprocess
+
 
 class Logic:
     
@@ -45,8 +43,7 @@ class Logic:
         return
 
 
-    def CreateWhereString(request, text_searches, int_searches_bottom, int_searches_top):
-        wherestring = ""
+    def CreateWhereString(request, wherestring,text_searches, int_searches_bottom, int_searches_top):
         for search in text_searches:
             #print(search)
             try:

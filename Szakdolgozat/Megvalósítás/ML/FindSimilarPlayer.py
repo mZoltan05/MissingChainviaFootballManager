@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 import sys
-from FindSimilarPlayer_Logic import FindSimilarPlayer_Logic as Logic
+from Logic import Logic
 from settings import Settings
 from sklearn.preprocessing import StandardScaler
 
