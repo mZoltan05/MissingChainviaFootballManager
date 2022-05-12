@@ -1,8 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from home.models import Club
 from home.models import Player
 from home.PlayersInstance import PlayersInstance
 from home.Logic import Logic
+from home.tests import StartTest
+
 import subprocess
 
 def home(request):
@@ -30,8 +33,9 @@ def foundedplayers(request,playerid):
     instance = PlayersInstance(request)
     subprocess_output = str(subprocess.run(["python", "..\..\ML\FindSimilarPlayer.py",playerid], capture_output=True).stdout)[3:-2]
     subprocess_output = "'"+subprocess_output.replace(", ","', '")+"'"
-    print(subprocess_output)
+    #print(subprocess_output)
     query = "SELECT * FROM player WHERE playerid in (" + subprocess_output+ " ) limit 100"
+    #print(query)
     players = Player.objects.raw(query)
     return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'isFindSimilarPlayersModeOn':True,'bestposForSearchUnderratedPlayers':instance.bestposForSearchUnderratedPlayers}))
 
@@ -54,3 +58,9 @@ def findUnderratedPlayers(request):
     players = instance.GetPlayers(request)
     #players = Player.objects.raw(query)
     return(render(request,'home.html',{'players':players,'column_visibilities':instance.column_visibilities,'text_searches':instance.text_searches,'int_searches_bottom':instance.int_searches_bottom,'int_searches_top':instance.int_searches_top,'orderbylist':instance.orderByList,'bestposForSearchUnderratedPlayers':instance.bestposForSearchUnderratedPlayers}))
+
+def test(request):
+    test = StartTest()
+    print(test.test())
+    return HttpResponse("<h1>Tests done!</h1>")
+    

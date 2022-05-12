@@ -19,7 +19,6 @@ class PlayersInstance:
         columns = ['name','club','age','born','height','weight','bestpos','nation','preferredfoot','value','wage','gk_properties','technical_properties','mental_properties','physical_properties_1','physical_properties_2','position_properties']
         for column in columns:
             self.column_visibilities[column] = Logic.CheckBoxValueToBoolean(request, column)
-
         Logic.ColumnVisibilitiesInit(self.column_visibilities)
 
         self.text_searches = {'name_txt':'','club_txt':'','born_date':'','bestpos_txt':'','nation_txt':'','preferredfoot_txt':''}

@@ -4,10 +4,6 @@ from sklearn import linear_model
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
 
-
-
-
-
 class Logic:
     
   
@@ -30,7 +26,7 @@ class Logic:
         for j in range(len(playersWithSimilarAbilities)):
             playersQuery += str(playersWithSimilarAbilities[j][0]) + ", "
         playersQuery += str(self.id) + " ) "
-
+        #print(playersQuery,"************************************************")
         players = pd.read_sql(playersQuery, self.dbConnection)
         return players
 
@@ -51,13 +47,13 @@ class Logic:
 
 
     def FindPlayersWithSimilarAbilities(self, targetAbilities):
-
         playersWithSimilarAbilities = []
         filteredPlayers = self.FilterPlayers(targetAbilities)
         for player in filteredPlayers:
             currentPlayerAbilities = self.FindTargetAbilities(player[0])
             if self.compareList(targetAbilities,currentPlayerAbilities):
                 playersWithSimilarAbilities.append(player)
+        #print(playersWithSimilarAbilities)
         return playersWithSimilarAbilities
 
 
@@ -77,6 +73,7 @@ class Logic:
         numberOfCommonFields = len(set(l1).intersection(l2))
         if numberOfCommonFields > 13:
             return True
+        return False
 
 
     def DetermineTheOptimalKValue(self, players_withoutid):

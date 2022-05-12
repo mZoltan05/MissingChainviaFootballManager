@@ -11,6 +11,7 @@ urlpatterns = [
     path(r'^foundedplayers/(?P<playerid>)/$',views.foundedplayers, name='foundedplayers'),
     path('findSimilarPlayersMode',views.findSimilarPlayersMode, name='findSimilarPlayersMode'),
     path('findUnderratedPlayers',views.findUnderratedPlayers, name='findUnderratedPlayers'),
-    path('club',views.club, name='club')
+    path('club',views.club, name='club'),
+    path('test',views.test, name='test')
     
 ]

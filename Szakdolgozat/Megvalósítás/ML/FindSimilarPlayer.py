@@ -11,7 +11,7 @@ def main(id):
     alchemyEngine = create_engine(Settings.dbConString, pool_recycle=3600);
     dbConnection = alchemyEngine.connect();
 
-    logic = Logic(dbConnection,id)
+    logic = Logic(dbConnection,int(id))
     players = logic.FindSimilarPlayers()
     
     dbConnection.close();
