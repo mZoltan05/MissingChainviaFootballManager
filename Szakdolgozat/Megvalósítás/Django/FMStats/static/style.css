@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: rgb(225, 247, 255);
   }
 
   h2 {
@@ -26,7 +26,7 @@ div{
 }
 
 .styled-table thead tr {
-  background-color: #34a73a;
+  background-color: #3483a7;
   color: #ffffff;
   text-align: left;
 }
@@ -37,7 +37,7 @@ div{
 }
 
 .styled-table tbody tr {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #8bc9fc;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -75,7 +75,7 @@ div{
 }
 
 .searchInputfields {
-  background-color: rgb(109, 235, 197);
+  background-color: rgb(144, 205, 255);
   text-align: left;
   width: 60%;
   height: 280px;
@@ -87,7 +87,7 @@ div{
 }
 
 .visibilityCheckboxes{
-  background-color: rgb(179, 231, 110);
+  background-color: rgb(188, 230, 255);
   text-align: left;
   width: 30%;
   width: 320px;
@@ -97,7 +97,7 @@ div{
 }
 
 .OrderByFields{
-  background-color: rgb(222, 186, 247);
+  background-color: rgb(168, 216, 255);
   text-align: left;
   width: 26%;
   position: relative;
@@ -106,7 +106,7 @@ div{
 }
 
 .scoreVisibilityCheckboxes{
-  background-color: rgb(231, 229, 110);
+  background-color: rgb(168, 216, 255);
   text-align: left;
   width: 23%;
   position: relative;
@@ -115,7 +115,7 @@ div{
 }
 
 .MachineLearningAlgorythms{
-  background-color: rgb(255, 208, 181);
+  background-color: rgb(166, 183, 196);
   text-align: left;
   width: 25%;
   position: relative;
@@ -139,7 +139,7 @@ input[name=orderby1],input[name=orderby2],input[name=orderby3],input[name=orderb
 }
 
 tr.header th {
-  background-color: #34a73a;
+  background-color: #3483a7;
   position: sticky;
   top: 0; /* Don't forget this, required for the stickiness */
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
