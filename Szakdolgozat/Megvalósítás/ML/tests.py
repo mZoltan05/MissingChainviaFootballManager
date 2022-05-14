@@ -1,4 +1,5 @@
 import unittest
+from sklearn.preprocessing import StandardScaler
 
 from sqlalchemy import create_engine
 from Logic import Logic
@@ -51,6 +52,66 @@ class TestFindPlayerWithSimilarAbilities(unittest.TestCase):
         
         dbConnection.close();
 
+class TestFindTargetAbilities(unittest.TestCase):
+    
+    def test_FindTargetAbilities(self):
+        alchemyEngine = create_engine(Settings.dbConString, pool_recycle=3600);
+        dbConnection = alchemyEngine.connect();
+        logic = Logic(dbConnection, 16184738)        
+        target_abilities = logic.FindTargetAbilities(16184738)
+        test_abilities = ['defenderleft','defendercentral','leftfoot','temperament','jumping','adaptability','decisions','ambition','strength','pace','professional','positioning','acceleration','sportsmanship','tackling','loyalty','rightfoot','heading','pressure','consistency']
+        self.assertEqual(target_abilities,test_abilities)
+        dbConnection.close();
+
+class TestFilterPlayers(unittest.TestCase):
+    
+    def test_FilterPlayers(self):
+        alchemyEngine = create_engine(Settings.dbConString, pool_recycle=3600);
+        dbConnection = alchemyEngine.connect();
+        logic = Logic(dbConnection, 16184738)
+        target_abilities = ['defenderleft','defendercentral','leftfoot','temperament','jumping','adaptability','decisions','ambition','strength','pace','professional','positioning','acceleration','sportsmanship','tackling','loyalty','rightfoot','heading','pressure','consistency']
+        filteredplayers = logic.FilterPlayers(target_abilities)
+        self.assertIn(16184738,filteredplayers)
+        dbConnection.close();
+
+class TestDetermineOptimalKValue(unittest.TestCase):
+
+    def test_DetermineOptimalKValue(self):
+        alchemyEngine = create_engine(Settings.dbConString, pool_recycle=3600);
+        dbConnection = alchemyEngine.connect();
+
+        logic = Logic(dbConnection,int(39014895))
+        players = logic.FindSimilarPlayers()
+        
+        dbConnection.close();
+        players_withoutid = players.drop(columns = ['playerid'])
+        players_withoutid = StandardScaler().fit_transform(players_withoutid)
+
+        k = logic.DetermineTheOptimalKValue(players_withoutid)
+
+        self.assertEqual(k,2)
+
+class TestGetPlayersOnPosition(unittest.TestCase):
+
+    def test_GetPlayersOnPosition(self):
+        alchemyEngine = create_engine(Settings.dbConString, pool_recycle=3600);
+        dbConnection = alchemyEngine.connect();
+
+        logic = Logic(dbConnection,int(18079805))
+        test_playersOnPosition  = pd.read_sql("""
+                                            
+                                            SELECT 
+                                                s.playerid ,  value,
+                                                aerialability, commandofarea, communication, eccentricity, handling, kicking, oneonones, reflexes, rushingout, tendencytopunch, throwing
+                                            FROM 
+                                                (SELECT * FROM player WHERE value > 0 and bestpos LIKE 'GK') p
+                                            INNER JOIN 
+                                                score_bak s
+                                            ON p.score_id = s.playerid
+                                            """, dbConnection)
+        playersOnPosition = logic.GetPlayersOnPosition()
+        self.assertEqual(test_playersOnPosition, playersOnPosition)
+        dbConnection.close();
 
 if __name__ == '__main__':
     unittest.main()
