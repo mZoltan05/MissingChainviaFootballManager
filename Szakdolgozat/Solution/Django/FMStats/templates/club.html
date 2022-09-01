@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'club' %}">
+    <div class="clubfilters">
+        <h2>Szűrők</h2>
+        <input type="text" id="name_txt" name="name_txt" value="{{ text_searches.name_txt }}">
+        <label for="name_txt"> Név</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <input type="text" id="division_txt" name="division_txt" value="{{ text_searches.division_txt }}">
+        <label for="division_txt"> Liga</label>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <input type="text" id="based_txt" name="based_txt" value="{{ text_searches.based_txt }}">
+        <label for="based_txt"> Székhely</label><br><br>
+        
+    <input type="submit" value="Frissít" style="position: relative;">
+    </div>
+</form>
+
+    <div class="backToHome">
+        <a href="{% url 'home' %}">
+            <h2 style="text-decoration:none;top:15px;position:relative;color:rgb(7, 80, 80)">Vissza</h2>
+        </a>
+    </div> 
+
+    <table  class="styled-table" style="top:100px;">
+        <thead> 
+            <tr class="header">
+                 <th> Név </th>
+                 <th> Liga </th>
+                 <th> Székhely </th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for club in clubs %}
+            <tr>
+                <td> {{ club.name }} </td>
+                <td> {{ club.division }} </td>
+                <td> {{ club.based }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+           
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table  class="styled-table">
+    <thead> 
+        <tr class="header">
+            {% if column_visibilities.name == True %} <th> Név </th>{% endif %}
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in players %}
+        <tr>
+            {% if column_visibilities.name == True %} <td> {{ p.name }} </td>{% endif %}
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
